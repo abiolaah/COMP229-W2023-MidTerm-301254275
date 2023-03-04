@@ -1,3 +1,7 @@
+/*File name: config-app.js (manifest)
+Author name: Oluwapelumi Ajuwon
+Student ID:301254275
+Site Name: My Favourite Books*/
 // moddules for node and express
 let createError = require('http-errors');
 let express = require('express');

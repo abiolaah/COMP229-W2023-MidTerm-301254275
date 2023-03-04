@@ -1,3 +1,7 @@
+/*File name: routes-books.js
+Author name: Oluwapelumi Ajuwon
+Student ID:301254275
+Site Name: My Favourite Books*/
 // modules required for routing
 let express = require('express');
 let router = express.Router();
@@ -36,8 +40,9 @@ router.get('/add', (req, res, next) => {
 router.post('/add', (req, res, next) => {
 
     /*****************
-     * ADD CODE HERE *
+     * ADDED CODE BELOW *
      *****************/
+    //creating an instance of the book model
     let newBook = Book({
       "Title": req.body.Title,
       "Description": req.body.Description,
@@ -45,6 +50,7 @@ router.post('/add', (req, res, next) => {
       "Author": req.body.Author,
       "Genre": req.body.Genre
   });
+  //using the create method to pass the instance of the book model
   Book.create(newBook, (err, book) => {
       if (err) {
           console.log(err);
@@ -64,7 +70,9 @@ router.get('/details/:id', (req, res, next) => {
     /*****************
      * ADD CODE HERE *
      *****************/
+    //initializing the id variable
     let id = req.params.id;
+    //using the findById method to retrieve details of the book
     Book.findById(id, (err, bookToEdit) => {
         if (err) {
             console.log(err);
@@ -82,7 +90,9 @@ router.post('/details/:id', (req, res, next) => {
     /*****************
      * ADD CODE HERE *
      *****************/
+    //initializing the id variable
     let id = req.params.id
+    //creating an instance of the book model which includes the id variable
     let updatedBook = Book({
         "_id": id,
         "Title": req.body.Title,
@@ -92,6 +102,7 @@ router.post('/details/:id', (req, res, next) => {
         "Genre": req.body.Genre
     });
     console.log('req.body.price' , req.body)
+    //using the update method and passing the instance of the book model as well as the id to process the edit for book
     Book.updateOne({ _id: id }, updatedBook, (err) => {
         if (err) {
             console.log(err);
@@ -111,7 +122,9 @@ router.get('/delete/:id', (req, res, next) => {
     /*****************
      * ADD CODE HERE *
      *****************/
+    //initializing the id variable
     let id = req.params.id;
+    //using the remove method to delete a book record
     Book.remove({ _id: id }, (err) => {
         if (err) {
             console.log(err);
